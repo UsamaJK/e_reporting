@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "703052303860",
+    "firebase_url": "https://fyp-ll-default-rtdb.firebaseio.com",
+    "project_id": "fyp-ll",
+    "storage_bucket": "fyp-ll.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703052303860:android:6dedeecf80364eb59d3da1",
+        "android_client_info": {
+          "package_name": "com.example.e_reporting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703052303860-fmiap51hbphqbal77rp7a1j87ek2rfj3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVrgg0odvUxr1vxwcLeirqpBbnOIjMf08"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703052303860-fmiap51hbphqbal77rp7a1j87ek2rfj3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
