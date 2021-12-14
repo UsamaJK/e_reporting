@@ -88,7 +88,7 @@ class _AppDrawerState extends State<AppDrawer> {
             Divider(),
             ListTile(
                 leading: Icon(Icons.report),
-                title: Text('Simple Reporting'),
+                title: Text('Register Complaints'),
                 onTap: () {
                   Navigator.of(context)
                       .pushNamed(SimpleReportingScreen.routeName);
@@ -96,7 +96,7 @@ class _AppDrawerState extends State<AppDrawer> {
             Divider(),
             ListTile(
               leading: Icon(Icons.local_police),
-              title: Text('Reporting Against Police'),
+              title: Text('Report Against Police'),
               onTap: () {
                 Navigator.of(context)
                     .pushNamed(ReportAgainstPoliceScreen.routeName);
@@ -105,7 +105,7 @@ class _AppDrawerState extends State<AppDrawer> {
             Divider(),
             ListTile(
               leading: Icon(Icons.report),
-              title: Text('Simple Registered Complaints'),
+              title: Text('Complaints History'),
               onTap: () {
                 Navigator.of(context).pushNamed(RegisteredComplaints.routeName);
               },
@@ -113,10 +113,26 @@ class _AppDrawerState extends State<AppDrawer> {
             Divider(),
             ListTile(
               leading: Icon(Icons.local_police),
-              title: Text('Against Police Registered Complaints'),
+              title: Text('Complaints Registered Against Police'),
               onTap: () {
                 Navigator.of(context)
                     .pushNamed(RegisteredPoliceComplaints.routeName);
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: const Text(
+                "Log Out",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Lato",
+                  fontSize: 20,
+                  color: Colors.red,
+                ),
+              ),
+              onTap: () {
+                logout(context);
               },
             ),
             // Divider(),
@@ -129,5 +145,11 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
       ),
     );
+  }
+
+  Future<void> logout(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 }
