@@ -25,7 +25,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   void initState() {
-    _chartData = getChartData();
+    // _chartData = getChartData();
     _tooltipBehavior = TooltipBehavior(enable: true);
     // TODO: implement initState
     super.initState();
@@ -61,23 +61,34 @@ class _DashboardScreenState extends State<DashboardScreen> {
           complaintlenght = listDocs.length;
           print(complaintlenght);
 
-          return SfCircularChart(
-            title: ChartTitle(text: "Registered Complaint\nComparison"),
-            legend: Legend(
-                isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
-            tooltipBehavior: _tooltipBehavior,
-            series: <CircularSeries>[
-              PieSeries<GDPData, String>(
-                dataSource: _chartData,
-                xValueMapper: (GDPData data, _) => data.continent,
-                yValueMapper: (GDPData data, _) => data.gdp,
-                dataLabelSettings: DataLabelSettings(
-                  isVisible: true,
-                ),
-                enableTooltip: true,
-              ),
-            ],
-          );
+          return FutureBuilder<List<GDPData>>(
+              future: getChartData(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                _chartData = snapshot.data;
+                return SfCircularChart(
+                  title: ChartTitle(text: "Registered Complaint\nComparison"),
+                  legend: Legend(
+                      isVisible: true,
+                      overflowMode: LegendItemOverflowMode.wrap),
+                  tooltipBehavior: _tooltipBehavior,
+                  series: <CircularSeries>[
+                    PieSeries<GDPData, String>(
+                      dataSource: _chartData,
+                      xValueMapper: (GDPData data, _) => data.continent,
+                      yValueMapper: (GDPData data, _) => data.gdp,
+                      dataLabelSettings: DataLabelSettings(
+                        isVisible: true,
+                      ),
+                      enableTooltip: true,
+                    ),
+                  ],
+                );
+              });
           // body: Center(
           //   child: Padding(
           //     padding: EdgeInsets.all(20),
@@ -133,10 +144,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 }
 
-List<GDPData> getChartData() {
+Future<List<GDPData>> getChartData() async {
+  var simpleReportsSnapshot =
+      await FirebaseFirestore.instance.collection("simpleReports").get();
+  var policeReportsSnapshot =
+      await FirebaseFirestore.instance.collection("policeReports").get();
+
   final List<GDPData> chartData = [
-    GDPData('Oceanic', 1600),
-    GDPData("Africa", 2490),
+    GDPData('Simple Reports', simpleReportsSnapshot.docs.length),
+    GDPData("Reports against Police", policeReportsSnapshot.docs.length),
   ];
   return chartData;
 }
