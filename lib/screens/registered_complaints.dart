@@ -34,28 +34,41 @@ class _RegisteredComplaintsState extends State<RegisteredComplaints> {
               child: CircularProgressIndicator(),
             );
           var listDocs = snapshot.data!.docs;
-          return ListView.builder(
-            itemCount: listDocs.length,
-            itemBuilder: (ctx, index) {
-              var currentDoc = listDocs[index];
-              return ListTile(
-                onTap: () {
-                  Navigator.of(context).pushNamed(
-                      DetailRegisteredComplaintScreen.routeName,
-                      arguments: currentDoc);
+          return Container(
+            // padding: EdgeInsets.only(top: 10.0, bottom: 750.0),
+            // margin: EdgeInsets.all(value),
+            child: Card(
+              elevation: 200.0,
+              child: ListView.builder(
+                // padding: EdgeInsets.all(16.0),
+
+                itemCount: listDocs.length,
+                itemBuilder: (ctx, index) {
+                  var currentDoc = listDocs[index];
+                  return ListTile(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                          DetailRegisteredComplaintScreen.routeName,
+                          arguments: currentDoc);
+                    },
+                    leading: CircleAvatar(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      child: Text(
+                        currentDoc.id[0].toUpperCase(),
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.report,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    title: Text(
+                      currentDoc.id,
+                    ),
+                  );
                 },
-                leading: CircleAvatar(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  child: Text(
-                    currentDoc.id[0].toUpperCase(),
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                title: Text(
-                  currentDoc.id,
-                ),
-              );
-            },
+              ),
+            ),
           );
         },
       ),

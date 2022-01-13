@@ -149,10 +149,13 @@ Future<List<GDPData>> getChartData() async {
       await FirebaseFirestore.instance.collection("simpleReports").get();
   var policeReportsSnapshot =
       await FirebaseFirestore.instance.collection("policeReports").get();
+  var emergencyReportSnapshot =
+      await FirebaseFirestore.instance.collection("emergencyReporting").get();
 
   final List<GDPData> chartData = [
     GDPData('Simple Reports', simpleReportsSnapshot.docs.length),
     GDPData("Reports against Police", policeReportsSnapshot.docs.length),
+    GDPData("Emergency Reports", emergencyReportSnapshot.docs.length),
   ];
   return chartData;
 }

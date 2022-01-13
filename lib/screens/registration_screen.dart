@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_reporting/models/user_model.dart';
 import 'package:e_reporting/screens/dashboard_screen.dart';
+import 'package:e_reporting/screens/emergency_reporting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -191,6 +192,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(
+          Icons.report_problem,
+        ),
+        onPressed: () {
+          Navigator.of(context).pushNamed(EmergencyReportingScreen.routeName);
+        },
+        label: Text(
+          "Emergency Reporting",
+        ),
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,

@@ -55,6 +55,10 @@ class _RegisteredPoliceComplaintsState
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
+                trailing: Icon(
+                  Icons.local_police,
+                  color: Theme.of(context).primaryColor,
+                ),
                 title: Text(
                   currentDoc.id,
                 ),

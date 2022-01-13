@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:e_reporting/screens/dashboard_screen.dart';
+import 'package:e_reporting/screens/emergency_reporting_screen.dart';
 import 'package:e_reporting/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -103,6 +104,17 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(
+          Icons.report_problem,
+        ),
+        onPressed: () {
+          Navigator.of(context).pushNamed(EmergencyReportingScreen.routeName);
+        },
+        label: Text(
+          "Emergency Reporting",
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Center(
         child: SingleChildScrollView(

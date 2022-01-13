@@ -2,6 +2,7 @@
 import 'package:e_reporting/screens/dashboard_screen.dart';
 import 'package:e_reporting/screens/detail_registeredComplaintScreen.dart';
 import 'package:e_reporting/screens/detail_registeredPoliceComplaintsScreen.dart';
+import 'package:e_reporting/screens/emergency_reporting_screen.dart';
 import 'package:e_reporting/screens/home_screen.dart';
 import 'package:e_reporting/screens/registered_complaints.dart';
 import 'package:e_reporting/screens/registered_policeComplaints.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
             RegisteredPoliceComplaints(),
         DetailRegisteredPoliceComplaintsScreen.routeName: (ctx) =>
             DetailRegisteredPoliceComplaintsScreen(),
+        EmergencyReportingScreen.routeName: (ctx) => EmergencyReportingScreen(),
       },
     );
   }
